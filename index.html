@@ -1,0 +1,584 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Canção Incentiva · Projetos para Lei Rouanet e Lei de Incentivo ao Esporte</title>
+<meta name="description" content="Monte seu projeto para a Lei Rouanet ou a Lei de Incentivo ao Esporte com ajuda de IA, divulgue projetos aptos a captar e calcule quanto do seu imposto pode virar cultura e esporte. Canção Consultoria Cultural e Esportiva, Maringá/PR.">
+<meta name="theme-color" content="#070707">
+<meta property="og:title" content="Canção Incentiva">
+<meta property="og:description" content="Projetos culturais e esportivos com leis de incentivo, do rascunho ao patrocínio.">
+<meta property="og:image" content="/logo.webp">
+<link rel="icon" href="/logo.webp" type="image/webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Cinzel:wght@500;600&family=Jost:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: app de uma coluna (máx. 960px), cabeçalho fixo com navegação; no celular a navegação vira barra inferior. */
+:root{
+  /* Identidade Canção: preto profundo + dourado do logotipo. Tema único escuro, por escolha de marca. */
+  --bg:#070707; --surface:#121110; --surface-2:#1A1916; --ink:#F4EFE3; --muted:#A9A190; --line:#2D2A24;
+  --primary:#D9BE72; --primary-ink:#161105; --primary-soft:rgba(217,190,114,.12);
+  --gold-grad:linear-gradient(135deg,#8E6B27 0%,#E8CD80 38%,#B48E43 62%,#F1DE9F 100%);
+  --sun:#D9BE72; --sun-soft:rgba(217,190,114,.14); --sun-ink:#EBD493;
+  --ok:#7FCB99; --ok-soft:rgba(127,203,153,.12); --warn:#E9B866; --warn-soft:rgba(233,184,102,.13); --bad:#F08A7E; --bad-soft:rgba(240,138,126,.13);
+  --shadow:0 1px 0 rgba(255,255,255,.03) inset,0 10px 30px rgba(0,0,0,.45);
+  --f-display:"Cormorant Garamond","Georgia",serif;
+  --f-caps:"Cinzel","Georgia",serif;
+  --f-body:"Jost","Segoe UI",system-ui,sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
+  --r:14px;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:17px/1.6 var(--f-body);-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:var(--f-display);line-height:1.15;margin:0;text-wrap:balance}
+h1{font-size:clamp(2rem,5.2vw,3rem);font-weight:600;letter-spacing:-.01em;line-height:1.08}
+h2{font-size:1.75rem;font-weight:600}
+h3{font-size:1.28rem;font-weight:700}
+h3{font-size:1.1rem;font-weight:700}
+p{margin:0}
+a{color:var(--primary)}
+.num{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.muted{color:var(--muted)}
+.small{font-size:.875rem}
+.eyebrow{font:500 .72rem var(--f-caps);letter-spacing:.2em;text-transform:uppercase;color:var(--primary)}
+.gold-text{background:var(--gold-grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* Header / nav */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--surface);border-bottom:1px solid var(--line)}
+.top-in{max-width:960px;margin:0 auto;padding:10px 16px;display:flex;align-items:center;gap:16px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--ink);white-space:nowrap}
+.brand img{height:46px;width:auto;display:block}
+.brand-txt{display:grid;line-height:1.1}
+.brand-txt b{font:600 .78rem var(--f-caps);letter-spacing:.22em;color:var(--primary)}
+.brand-txt span{font:400 .68rem var(--f-body);letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+@media (max-width:420px){.brand-txt{display:none}}
+.nav{display:flex;gap:2px;margin-left:auto;overflow-x:auto}
+.nav button{font:600 .92rem var(--f-body);color:var(--muted);background:none;border:0;padding:8px 12px;border-radius:8px;cursor:pointer;white-space:nowrap;display:flex;align-items:center;gap:6px}
+.nav button svg{width:18px;height:18px;flex:none}
+.nav button:hover{color:var(--ink);background:var(--surface-2)}
+.nav button[aria-current="page"]{color:var(--primary);background:var(--primary-soft)}
+.nav .only-owner[hidden]{display:none!important}
+@media (max-width:760px){
+  .nav{position:fixed;left:0;right:0;bottom:0;margin:0;background:var(--surface);border-top:1px solid var(--line);justify-content:space-around;padding:6px 4px calc(6px + env(safe-area-inset-bottom,0px));z-index:30}
+  .nav button{flex-direction:column;gap:2px;font-size:.7rem;padding:6px 6px;flex:1;min-width:0}
+  .nav button svg{width:22px;height:22px}
+  main{padding-bottom:90px!important}
+}
+
+main{max-width:960px;margin:0 auto;padding-inline:16px;padding-block:24px 64px}
+.view{display:grid;gap:20px}
+.view[hidden]{display:none!important}
+
+/* Surfaces */
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:20px;box-shadow:var(--shadow);min-width:0}
+.card.flat{box-shadow:none}
+.stack{display:grid;gap:12px}
+.row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.sep{height:1px;background:var(--line);border:0;margin:4px 0}
+
+/* Buttons */
+.btn{font:600 1rem var(--f-body);border-radius:10px;padding:12px 20px;min-height:48px;border:1px solid transparent;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;line-height:1.2}
+.btn-primary{background:var(--gold-grad);color:var(--primary-ink);border-color:rgba(241,222,159,.35)}
+.btn-primary:hover{filter:brightness(1.08)}
+.btn-sun{background:var(--gold-grad);color:var(--primary-ink)}
+.btn-ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn-ghost:hover{background:var(--surface-2)}
+.btn-danger{background:transparent;color:var(--bad);border-color:var(--bad)}
+.btn-sm{padding:8px 14px;font-size:.9rem;border-radius:8px;min-height:40px}
+.btn[disabled]{opacity:.5;cursor:not-allowed}
+:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
+
+/* Forms */
+label.f{display:grid;gap:6px;font-weight:600;font-size:.92rem;min-width:0}
+label.f .hint{font-weight:400;color:var(--muted);font-size:.82rem}
+input[type=text],input[type=email],input[type=tel],input[type=number],input[type=date],input[type=url],select,textarea{
+  font:400 1.05rem var(--f-body);color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 14px;width:100%;min-width:0;min-height:48px}
+textarea{min-height:96px;resize:vertical}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--primary);outline-offset:0;border-color:var(--primary)}
+.money{position:relative}
+.money::before{content:"R$";position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--muted);font:600 .9rem var(--f-mono)}
+.money input{padding-left:40px;font-family:var(--f-mono)}
+.choice{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}
+.choice label{border:1.5px solid var(--line);border-radius:12px;padding:14px;cursor:pointer;display:grid;gap:4px;background:var(--surface)}
+.choice input{position:absolute;opacity:0;pointer-events:none}
+.choice label:has(input:checked){border-color:var(--primary);background:var(--primary-soft)}
+.choice label:has(input:focus-visible){outline:3px solid var(--sun);outline-offset:2px}
+.choice b{font-family:var(--f-display);font-size:1.25rem;font-weight:700}
+.check{display:flex;gap:10px;align-items:flex-start;font-size:.92rem}
+.check input{margin-top:4px;width:18px;height:18px;accent-color:var(--primary)}
+.seg{display:inline-flex;background:var(--surface-2);border:1px solid var(--line);border-radius:10px;padding:3px}
+.seg button{font:700 .9rem var(--f-body);border:0;background:none;color:var(--muted);padding:8px 14px;border-radius:8px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--surface);color:var(--ink);box-shadow:var(--shadow)}
+
+/* Chips / status */
+.chip{display:inline-flex;align-items:center;gap:6px;font:700 .75rem var(--f-body);letter-spacing:.02em;padding:4px 9px;border-radius:999px;background:var(--surface-2);color:var(--muted);border:1px solid var(--line);white-space:nowrap}
+.chip.cultura{background:var(--sun-soft);color:var(--sun-ink);border-color:transparent}
+.chip.esporte{background:transparent;color:var(--ink);border-color:var(--primary)}
+.chip.ok{background:var(--ok-soft);color:var(--ok);border-color:transparent}
+.chip.warn{background:var(--warn-soft);color:var(--warn);border-color:transparent}
+.chip.bad{background:var(--bad-soft);color:var(--bad);border-color:transparent}
+.dot{width:7px;height:7px;border-radius:50%;background:currentColor}
+
+/* Notices */
+.notice{border-radius:12px;padding:12px 14px;font-size:.92rem;display:block;background:var(--surface-2);border:1px dashed var(--line)}
+.notice.sun{background:var(--sun-soft);border:0;color:var(--sun-ink)}
+.notice.bad{background:var(--bad-soft);border:0;color:var(--bad)}
+.notice.ok{background:var(--ok-soft);border:0;color:var(--ok)}
+
+/* Home */
+.hero{display:grid;gap:14px;padding:8px 0 4px}
+.hero p{max-width:60ch;color:var(--muted);font-size:1.05rem}
+.stamp{display:inline-flex;align-items:center;gap:8px;font:500 .7rem var(--f-caps);letter-spacing:.2em;color:var(--primary);border-top:1px solid var(--primary);border-bottom:1px solid var(--primary);padding:6px 2px;width:max-content;max-width:100%;flex-wrap:wrap}
+.hero-wrap{display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center}
+.hero-logo{width:min(300px,70vw);height:auto;filter:drop-shadow(0 0 40px rgba(217,190,114,.12))}
+@media (max-width:760px){.hero-wrap{grid-template-columns:1fr}.hero-logo{order:-1;justify-self:center;width:min(240px,64vw)}}
+.paths{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
+.path{display:grid;gap:10px;align-content:start;text-align:left;cursor:pointer;font:inherit;color:inherit}
+.path:hover{border-color:var(--primary)}
+.path .ic{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--primary);color:var(--primary)}
+
+.path .ic svg{width:22px;height:22px}
+.path .go{font-weight:700;color:var(--primary);font-size:.92rem;margin-top:4px}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.facts div{background:var(--surface);padding:14px 16px;display:grid;gap:2px}
+.facts .big{font:600 2rem var(--f-display);line-height:1}
+
+/* Wizard */
+.steps{display:flex;gap:6px;overflow-x:auto;padding-bottom:2px}
+.steps span{flex:1;min-width:64px;display:grid;gap:6px;font-size:.75rem;font-weight:700;color:var(--muted)}
+.steps span::before{content:"";height:4px;border-radius:4px;background:var(--line)}
+.steps span.done::before,.steps span.on::before{background:var(--gold-grad)}
+.steps span.on{color:var(--ink)}
+.wstep[hidden]{display:none!important}
+.wnav{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+
+/* AI output */
+.doc{font-size:1rem;line-height:1.65;display:grid;gap:10px;min-width:0}
+.doc h2,.doc h3,.doc h4,.doc h5{margin-top:12px}
+.doc h2{font-size:1.3rem}.doc h3{font-size:1.12rem}.doc h4,.doc h5{font-size:1rem}
+.doc ul,.doc ol{margin:0;padding-left:1.3em;display:grid;gap:4px}
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:10px}
+.tbl table{border-collapse:collapse;width:100%;font-size:.9rem;font-variant-numeric:tabular-nums}
+.tbl th,.tbl td{padding:8px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+.tbl th{background:var(--surface-2);font-weight:700;white-space:nowrap}
+.tbl tr:last-child td{border-bottom:0}
+.thinking{display:flex;align-items:center;gap:10px;color:var(--muted);font-weight:600}
+.thinking i{width:10px;height:10px;border-radius:50%;background:var(--gold-grad);animation:pulse 1.2s infinite ease-in-out}
+@keyframes pulse{0%,100%{opacity:.25;transform:scale(.8)}50%{opacity:1;transform:scale(1)}}
+@media (prefers-reduced-motion:reduce){.thinking i{animation:none}}
+.lock{border:1px solid var(--primary);background:linear-gradient(180deg,rgba(217,190,114,.10),rgba(217,190,114,.02));color:var(--ink)}
+.lock ul{margin:0;padding-left:1.2em;display:grid;gap:2px}
+.status-row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+
+/* Vitrine */
+.filters{display:grid;grid-template-columns:2fr repeat(3,1fr);gap:10px}
+@media (max-width:760px){.filters{grid-template-columns:1fr 1fr}.filters .q{grid-column:1/-1}}
+.projs{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:14px}
+.proj{display:grid;gap:10px;align-content:start}
+.proj h3{font-size:1.3rem}
+.meta{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:.85rem;color:var(--muted)}
+.pronac{font:600 .78rem var(--f-mono);color:var(--muted)}
+.bar{height:8px;border-radius:8px;background:var(--surface-2);border:1px solid var(--line);overflow:hidden}
+.bar i{display:block;height:100%;background:var(--gold-grad)}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;font-size:.9rem}
+.kv dt{color:var(--muted)}.kv dd{margin:0;text-align:right}
+.empty{text-align:center;padding:36px 20px;display:grid;gap:8px;justify-items:center}
+.empty svg{width:40px;height:40px;color:var(--muted)}
+
+/* Calculator */
+.result{display:grid;gap:12px}
+.lim{display:grid;grid-template-columns:1fr auto;gap:4px 12px;align-items:baseline;padding:14px 16px;border-radius:12px;background:var(--surface-2)}
+.lim .v{font:600 1.3rem var(--f-mono);letter-spacing:-.02em}
+.lim.total{background:var(--gold-grad);color:var(--primary-ink)}
+.lim.total .muted{color:inherit;opacity:.8}
+
+/* Sheet (modal) */
+.sheet{position:fixed;inset:0;z-index:50;display:grid;place-items:end center;background:rgba(0,0,0,.7);padding:16px}
+.sheet[hidden]{display:none!important}
+.sheet-in{background:var(--surface);color:var(--ink);border-radius:16px;width:min(620px,100%);max-height:calc(100% - 24px);overflow:auto;padding:22px;display:grid;gap:14px;box-shadow:var(--shadow)}
+@media (min-width:761px){.sheet{place-items:center}}
+.sheet-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.x{background:none;border:0;color:var(--muted);cursor:pointer;font-size:1.4rem;line-height:1;padding:4px 8px;border-radius:8px}
+.x:hover{background:var(--surface-2)}
+
+/* Admin */
+.tabs{display:flex;gap:6px;flex-wrap:wrap}
+.tabs button{font:700 .88rem var(--f-body);border:1px solid var(--line);background:var(--surface);color:var(--muted);padding:8px 12px;border-radius:999px;cursor:pointer;display:inline-flex;gap:6px;align-items:center}
+.tabs button[aria-pressed="true"]{background:var(--primary-soft);color:var(--primary);border-color:var(--primary)}
+.count{font:600 .72rem var(--f-mono);background:var(--primary);color:var(--primary-ink);border-radius:999px;padding:1px 7px}
+.item{display:grid;gap:10px}
+.item-head{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:flex-start}
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--surface-2);color:var(--primary);border:1px solid var(--primary);padding:10px 16px;border-radius:10px;font-weight:600;z-index:60;box-shadow:var(--shadow);max-width:calc(100% - 32px)}
+@media (max-width:760px){.toast{bottom:calc(84px + env(safe-area-inset-bottom,0px))}}
+.toast[hidden]{display:none!important}
+.campo{border:1px solid var(--line);border-radius:12px;background:var(--surface-2);padding:0 16px}
+.campo[open]{padding-bottom:16px}
+.campo>summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap;padding:14px 0}
+.campo>summary::-webkit-details-marker{display:none}
+.campo>summary::after{content:"+";font:400 1.4rem var(--f-body);color:var(--primary);margin-left:auto}
+.campo[open]>summary::after{content:"–"}
+.campo-t{font:700 1.2rem var(--f-display)}
+.campo>*+*{margin-top:10px}
+.campo-txt{white-space:pre-wrap;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:14px 16px;font-size:.95rem;line-height:1.65;overflow-wrap:anywhere}
+.meta-box{border-top:1px solid var(--line);padding-top:14px}
+.prog{display:grid;gap:6px;max-height:320px;overflow:auto;padding-right:4px}
+.nomes{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.ajuda{display:inline-flex;align-items:center;gap:6px;font:500 .88rem var(--f-body);color:var(--primary);text-decoration:underline;text-underline-offset:3px;padding:4px 0;width:max-content;max-width:100%}
+.nsei{display:inline-flex;align-items:center;cursor:pointer;width:max-content;max-width:100%;border:1px solid var(--primary);border-radius:999px;padding:8px 16px;min-height:42px;font:500 .92rem var(--f-body);color:var(--primary);background:transparent;transition:background .15s}
+.nsei:hover{background:var(--primary-soft)}
+.nsei input{position:absolute;opacity:0;pointer-events:none}
+.nsei span{display:inline-flex;align-items:center;gap:8px}
+.nsei .ns-on{display:none}
+.nsei:has(input:checked){background:var(--gold-grad);color:var(--primary-ink);border-color:transparent;font-weight:600}
+.nsei:has(input:checked) .ns-on{display:inline-flex}
+.nsei:has(input:checked) .ns-off{display:none}
+.nsei:has(input:focus-visible){outline:3px solid var(--primary);outline-offset:2px}
+.dica{display:flex;gap:14px;align-items:flex-start;padding:16px 18px;border-radius:14px;border:1px solid rgba(217,190,114,.35);background:linear-gradient(135deg,rgba(217,190,114,.12),rgba(217,190,114,.03));font-size:.97rem;line-height:1.6}
+.dica-ic{flex:none;width:40px;height:40px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--primary);color:var(--primary)}
+.dica strong{font:600 1.15rem var(--f-display);color:var(--primary)}
+@media (max-width:480px){.dica-ic{display:none}}
+.ia-pill-demo{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--primary);border-radius:999px;padding:1px 10px;color:var(--primary);font-weight:500;white-space:nowrap;vertical-align:baseline}
+label.f.is-ns input,label.f.is-ns .money{opacity:.4}
+.pl-cat{gap:14px}
+.pl-row{display:grid;grid-template-columns:minmax(0,2.2fr) minmax(0,1fr) minmax(0,.8fr) minmax(0,1.3fr) minmax(0,1fr);gap:10px;align-items:end;padding:12px;border:1px solid var(--line);border-radius:12px;background:var(--bg)}
+.pl-tot{display:grid;gap:2px;padding-bottom:10px}
+.pl-acts{grid-column:1/-1;display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.pl-obs{grid-column:1/-1;margin-top:-4px}
+@media (max-width:760px){.pl-row{grid-template-columns:1fr 1fr}.pl-item{grid-column:1/-1}.pl-tot{grid-column:1/-1;display:flex;justify-content:space-between;padding:0}}
+.pl-sug{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.pl-chip{cursor:pointer;font-size:.82rem;padding:7px 12px;background:transparent;color:var(--primary);border-color:var(--line)}
+.pl-chip:hover{border-color:var(--primary)}
+.pl-sum{display:grid;gap:8px}
+.pl-sum-row{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:4px 14px;align-items:center;font-size:.92rem}
+.pl-sum-row>span:last-child{grid-column:1/-1}
+.pl-sum-row>span:last-child:empty{display:none}
+.pl-sum .chip,.pl-chip{white-space:normal;text-align:left}
+.protegido{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+.aviso-prot{display:flex;align-items:center;gap:8px;font-size:.85rem;color:var(--muted);border-bottom:1px solid var(--line);padding-bottom:10px;margin:0}
+.aviso-prot svg{color:var(--primary);flex:none}
+.foot{font-size:.8rem;color:var(--muted);max-width:70ch}
+.conta{margin-left:auto;order:2}
+@media (min-width:761px){.conta{order:3;margin-left:8px}.nav{margin-left:auto;order:2}}
+.dica-txt{background:var(--primary-soft);border:1px solid rgba(217,190,114,.35);border-radius:12px;padding:12px 14px;margin:0}
+body{margin:0}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="top-in">
+    <a class="brand" href="#inicio" data-go="inicio" aria-label="Canção Consultoria · início">
+      <img src="/logo.webp" alt="Canção Consultoria Cultural e Esportiva" width="61" height="46">
+      <span class="brand-txt"><b>INCENTIVA</b><span>Cultura e esporte</span></span>
+    </a>
+    <button class="btn btn-ghost btn-sm conta" id="btn-conta" type="button" hidden>Entrar</button>
+    <nav class="nav" aria-label="Seções">
+      <button data-go="inicio"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>Início</button>
+      <button data-go="montar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M9 14h6M9 18h4"/></svg>Montar</button>
+      <button data-go="captar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>Captar</button>
+      <button data-go="vitrine"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>Projetos</button>
+      <button data-go="calc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M9 6h6M9 11h.01M12 11h.01M15 11h.01M9 15h.01M12 15h.01M15 15h.01M9 18h6"/></svg>Calcular</button>
+      <button data-go="admin" class="only-owner" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/><path d="M9 12l2 2 4-4"/></svg>Gestão</button>
+    </nav>
+  </div>
+</header>
+
+<main>
+<p class="notice bad" id="aviso-config" hidden>O site está em configuração: cadastro, IA e envio de projetos ainda não estão ativos. A calculadora já funciona.</p>
+<!-- ============ INÍCIO ============ -->
+<section class="view" id="v-inicio">
+  <div class="hero-wrap">
+    <div class="hero">
+      <span class="stamp">LEI ROUANET · LEI DE INCENTIVO AO ESPORTE</span>
+      <h1>Do rascunho da ideia ao <span class="gold-text">patrocínio</span>, com as leis federais de incentivo.</h1>
+      <p>Monte seu projeto com ajuda de IA, divulgue projetos já aprovados para captação e descubra quanto do seu imposto de renda pode virar cultura e esporte.</p>
+    </div>
+    <img class="hero-logo" src="/logo.webp" alt="" width="382" height="291">
+  </div>
+  <div class="paths">
+    <button class="card path" data-go="montar">
+      <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></span>
+      <h3>Quero montar um projeto</h3>
+      <p class="muted small">Responda algumas perguntas. A IA faz um diagnóstico gratuito de enquadramento e monta o projeto completo para protocolar.</p>
+      <span class="go">Começar agora →</span>
+    </button>
+    <button class="card path" data-go="captar">
+      <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg></span>
+      <h3>Meu projeto está apto a captar</h3>
+      <p class="muted small">Envie seu projeto aprovado (PRONAC ou processo do Ministério do Esporte). Após conferência, ele aparece para empresários.</p>
+      <span class="go">Enviar projeto →</span>
+    </button>
+    <button class="card path sun" data-go="calc">
+      <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V10l7-5 7 5v11M9 21v-6h6v6"/></svg></span>
+      <h3>Sou empresário ou contribuinte</h3>
+      <p class="muted small">Calcule quanto pode destinar do IR, veja projetos aptos e receba o contato da Canção Consultoria.</p>
+      <span class="go">Calcular incentivo →</span>
+    </button>
+  </div>
+  <div class="facts" aria-label="Limites de dedução">
+    <div><span class="eyebrow">Empresa · Cultura</span><span class="big">3,6%</span><span class="small muted">do IRPJ devido (Lucro Real), com a redução da LC 224/2025</span></div>
+    <div><span class="eyebrow">Empresa · Esporte</span><span class="big">1,8%</span><span class="small muted">em 2026 e 2027, com a redução da LC 224/2025; 2,7% a partir de 2028</span></div>
+    <div><span class="eyebrow">Pessoa física · Cultura</span><span class="big">6%</span><span class="small muted">do IR devido, declaração completa</span></div>
+    <div><span class="eyebrow">Pessoa física · Esporte</span><span class="big">7%</span><span class="small muted">do IR devido, declaração completa</span></div>
+  </div>
+  <div id="home-vitrine" class="stack"></div>
+  <p class="foot">Canção Consultoria Cultural e Esportiva · Maringá/PR. Os cálculos e textos gerados são orientativos e devem ser conferidos por um profissional antes do protocolo ou do aporte.</p>
+</section>
+
+<!-- ============ MONTAR PROJETO ============ -->
+<section class="view" id="v-montar" hidden>
+  <div class="stack">
+    <span class="eyebrow">Montar projeto</span>
+    <h2>Assistente de projeto</h2>
+    <p class="muted">Responda com suas palavras. O diagnóstico é gratuito; o projeto completo, pronto para protocolar, é liberado pela Canção.</p>
+  </div>
+  <div id="rascunhos-box"></div>
+  <div class="card stack" id="wizard">
+    <div class="steps" id="steps">
+      <span class="on">Lei</span><span>Quem propõe</span><span>A ideia</span><span>Detalhes</span><span>Custos</span><span>Revisar</span>
+    </div>
+    <div class="dica"><span class="dica-ic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.6 10.8c.6.5 1 1.2 1 2V17h5.2v-1.2c0-.8.4-1.5 1-2A6 6 0 0 0 12 3z"/></svg></span><div class="stack" style="gap:4px"><strong>Não precisa saber tudo.</strong><span>Se faltar alguma informação, toque em <span class="ia-pill-demo"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/><path d="M19 17l.7 2 2 .7-2 .7-.7 2-.7-2-2-.7 2-.7z"/></svg>Deixar a IA sugerir</span> e ela completa para você. Em cada pergunta também há um link para ver exemplos no Google.</span></div></div>
+    <form id="wform" novalidate class="stack">
+      <div class="wstep stack" data-step="0">
+        <h3>Em qual lei você quer apresentar o projeto?</h3>
+        <p class="muted small">Cultura: música, teatro, dança, livros, festas populares, museus. Esporte: aulas, escolinhas, treinamento, competições.</p>
+        <div class="choice">
+          <label><input type="radio" name="lei" value="cultura" id="w-lei-c"><b>Cultura</b><span class="small muted">Lei Rouanet · Ministério da Cultura (SALIC)</span></label>
+          <label><input type="radio" name="lei" value="esporte" id="w-lei-e"><b>Esporte</b><span class="small muted">Lei de Incentivo ao Esporte · Ministério do Esporte (SLI)</span></label>
+          <label><input type="radio" name="lei" value="naosei" id="w-lei-n"><b>Me ajude a escolher</b><span class="small muted">A IA indica a lei mais adequada para a sua ideia</span></label>
+        </div>
+        <span data-google="diferença entre Lei Rouanet e Lei de Incentivo ao Esporte qual escolher"></span>
+      </div>
+
+      <div class="wstep stack" data-step="1" hidden>
+        <h3>Quem vai apresentar o projeto?</h3>
+        <div class="grid2">
+          <label class="f">Quem é você ou sua instituição?
+            <select name="tipo" id="w-tipo">
+              <option value="">Toque para escolher</option>
+              <option>Pessoa física (artista, produtor)</option>
+              <option>MEI</option>
+              <option>Associação, instituto ou clube sem fins lucrativos</option>
+              <option>Empresa com fins lucrativos</option>
+              <option>Órgão público ou escola pública</option>
+              <option>Ainda não sei, a IA orienta</option>
+            </select><span data-google="quem pode apresentar projeto na {lei} proponente"></span></label>
+          <label class="f">Há quanto tempo tem CNPJ?
+            <select name="tempo" id="w-tempo">
+              <option value="">Toque para escolher</option>
+              <option>Não tenho CNPJ</option>
+              <option>Menos de 1 ano</option>
+              <option>Entre 1 e 2 anos</option>
+              <option>Mais de 2 anos</option>
+              <option>Ainda não sei, a IA orienta</option>
+            </select><span data-google="tempo mínimo de CNPJ para proponente {lei}"></span></label>
+          <label class="f">Cidade<input type="text" name="cidade" id="w-cidade" placeholder="Ex.: Maringá"></label>
+          <label class="f">Estado<select name="uf" id="w-uf"></select></label>
+        </div>
+        <label class="f">O que você ou sua instituição já fez? <span class="hint">Projetos, apresentações, aulas, prêmios, há quanto tempo atua. Se não souber o que escrever, pode deixar em branco.</span>
+          <textarea name="experiencia" id="w-exp" placeholder="Ex.: Associação fundada em 2019, atende 120 crianças em aulas de tênis; já fizemos um projeto com a prefeitura em 2023."></textarea>
+          <span data-google="como comprovar experiência do proponente {lei} portfólio"></span></label>
+      </div>
+
+      <div class="wstep stack" data-step="2" hidden>
+        <h3>Conte a sua ideia</h3>
+        <label class="f">Nome do projeto <span class="hint">Pode ser provisório. A IA vai sugerir 5 nomes depois.</span><input type="text" name="titulo" id="w-titulo" placeholder="Ex.: Tênis nas Escolas"><span data-google="exemplos de nomes de projetos aprovados {lei}"></span></label>
+        <label class="f">Área do projeto<select name="segmento" id="w-seg"></select><span data-google="{segq}"></span></label>
+        <label class="f">O que você quer fazer? <span class="hint">Escreva como se explicasse para um amigo: o que vai acontecer, para quem, onde e por quê.</span>
+          <textarea name="descricao" id="w-desc" style="min-height:140px"></textarea><span data-google="exemplo de descrição de projeto aprovado {lei}"></span></label>
+        <div class="grid2">
+          <label class="f">Quem vai participar ou assistir?<input type="text" name="publico" id="w-publico" placeholder="Ex.: crianças de 7 a 14 anos de escolas públicas"><span data-google="como definir público-alvo de projeto {lei}"></span></label>
+          <label class="f">Quantas pessoas? <span class="hint">Um número aproximado.</span><input type="number" min="0" name="beneficiarios" id="w-benef" placeholder="Ex.: 200"><span class="ns" data-ns="beneficiarios"></span><span data-google="como calcular número de beneficiários projeto {lei}"></span></label>
+          <label class="f">Onde vai acontecer?<input type="text" name="local" id="w-local" placeholder="Ex.: bairros da zona norte de Maringá"><span class="ns" data-ns="local"></span></label>
+          <label class="f">Por quanto tempo?<input type="text" name="periodo" id="w-periodo" placeholder="Ex.: 8 meses a partir de março de 2027"><span class="ns" data-ns="periodo"></span><span data-google="prazo de execução de projeto {lei}"></span></label>
+        </div>
+        <label class="f">Quanto custa o projeto, mais ou menos? <span class="hint">Se ainda não tem ideia, deixe a IA sugerir. No próximo passo você também pode montar a planilha de custos.</span><span class="money"><input type="text" inputmode="decimal" name="valor" id="w-valor" placeholder="350.000,00"></span><span class="ns" data-ns="valor"></span><span data-google="quanto custa um projeto {lei} valores médios orçamento"></span></label>
+      </div>
+
+      <div class="wstep stack" data-step="3" hidden>
+        <h3>Detalhes que ajudam a aprovar</h3>
+        <p class="muted small">Tudo aqui é opcional. Quanto mais você contar, melhor o projeto fica.</p>
+        <label class="f">O que vai ser feito, e quantas vezes? <span class="hint">Ex.: 10 shows, 4 oficinas de 8 horas, 1 livro com 500 exemplares. Ou: 4 turmas de 25 alunos, 3 festivais.</span>
+          <textarea name="produtos" id="w-prod"></textarea><span data-google="exemplos de produtos e metas em projetos {lei}"></span></label>
+        <label class="f">Como vai funcionar no dia a dia? <span class="hint">Aulas, ensaios, apresentações, viagens, torneios…</span>
+          <textarea name="atividades" id="w-ativ"></textarea><span data-google="como descrever atividades e metodologia de projeto {lei}"></span></label>
+        <label class="f">Quem vai trabalhar no projeto? <span class="hint">Funções e, se souber, nomes. Ex.: 1 coordenador, 2 professores, 1 produtor.</span>
+          <textarea name="equipe" id="w-equipe"></textarea><span data-google="equipe e ficha técnica de projeto {lei} exemplo"></span></label>
+        <label class="f">Um pouco sobre as pessoas principais <span class="hint">Nome, função e o que já fizeram. É o currículo resumido.</span>
+          <textarea name="curriculos" id="w-curr"></textarea><span data-google="currículo resumido ficha técnica projeto {lei} exemplo"></span></label>
+        <label class="f">Como pessoas com deficiência vão participar? <span class="hint">Rampas, Libras, audiodescrição, vagas reservadas… Se não souber, a IA sugere.</span>
+          <textarea name="acesso" id="w-acesso"></textarea><span data-google="medidas de acessibilidade em projetos {lei} Libras audiodescrição"></span></label>
+        <label class="f">O público paga ou é de graça? <span class="hint">Gratuito, ingresso a preço popular (quanto?), inscrição…</span>
+          <input type="text" name="ingresso" id="w-ingresso"><span class="ns" data-ns="ingresso"></span><span data-google="democratização de acesso gratuidade ingresso popular {lei}"></span></label>
+        <label class="f">Conhece empresas que poderiam patrocinar? <span class="hint">Opcional.</span>
+          <input type="text" name="patrocinio" id="w-patro"><span data-google="como encontrar empresas patrocinadoras lei de incentivo lucro real"></span></label>
+      </div>
+
+      <div class="wstep stack" data-step="4" hidden>
+        <div class="item-head"><div class="stack" style="gap:4px"><h3>Planilha de custos</h3><p class="muted small">Liste o que o projeto vai precisar pagar. Se preferir, a IA monta uma planilha sugerida e você só ajusta. Este passo é opcional.</p></div></div>
+        <div class="row" id="pl-actions">
+          <button type="button" class="btn btn-primary" id="pl-ia">Montar planilha sugerida com IA</button>
+          <button type="button" class="btn btn-ghost" id="pl-csv">Baixar planilha (Excel)</button>
+          <button type="button" class="btn btn-ghost" id="pl-limpar">Limpar planilha</button>
+        </div>
+        <p id="pl-msg" class="notice small" hidden></p>
+        <div id="pl-resumo"></div>
+        <div id="pl-cats" class="stack"></div>
+        <span data-google="planilha orçamentária projeto {lei} exemplo itens valores"></span>
+      </div>
+
+      <div class="wstep stack" data-step="5" hidden>
+        <h3>Confira e gere o diagnóstico</h3>
+        <p class="muted small">Toque em Voltar se quiser mudar alguma resposta.</p>
+        <div id="w-review" class="kv"></div>
+        <div id="w-ai-off" class="notice" hidden></div>
+      </div>
+      <p id="w-err" class="notice bad" hidden></p>
+      <div class="wnav">
+        <button type="button" class="btn btn-ghost" id="w-back">Voltar</button>
+        <div class="row">
+          <button type="button" class="btn btn-ghost" id="w-reset">Limpar</button>
+          <button type="button" class="btn btn-primary" id="w-next">Continuar</button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div id="resultado" class="stack"></div>
+</section>
+
+<!-- ============ CAPTAR ============ -->
+<section class="view" id="v-captar" hidden>
+  <div class="stack">
+    <span class="eyebrow">Projeto apto a captar</span>
+    <h2>Divulgue seu projeto para empresários</h2>
+    <p class="muted">A Canção confere a aprovação (DOU, SALIC ou Ministério do Esporte) e o prazo de captação antes de publicar na vitrine.</p>
+  </div>
+  <div id="meus-envios"></div>
+  <form class="card stack" id="cform" novalidate>
+    <h3 id="cform-title">Dados do projeto</h3>
+    <div class="grid2">
+      <label class="f">Nome do projeto<input type="text" id="c-nome" required></label>
+      <label class="f">Lei<select id="c-lei" required><option value="">Selecione</option><option value="cultura">Lei Rouanet (Cultura)</option><option value="esporte">Lei de Incentivo ao Esporte</option></select></label>
+      <label class="f">Nº PRONAC ou processo<input type="text" id="c-numero" placeholder="Ex.: 257942" required></label>
+      <label class="f">Área ou manifestação<select id="c-seg"></select></label>
+      <label class="f">Proponente<input type="text" id="c-prop" placeholder="Nome da pessoa ou instituição" required></label>
+      <label class="f">CPF/CNPJ do proponente<input type="text" id="c-doc"></label>
+      <label class="f">Cidade<input type="text" id="c-cidade" required></label>
+      <label class="f">Estado<select id="c-uf" required></select></label>
+      <label class="f">Valor aprovado para captação<span class="money"><input type="text" inputmode="decimal" id="c-aprov" required></span></label>
+      <label class="f">Valor já captado<span class="money"><input type="text" inputmode="decimal" id="c-capt" placeholder="0,00"></span></label>
+      <label class="f">Prazo final de captação<input type="date" id="c-prazo" required></label>
+      <label class="f">Link da publicação (DOU ou SALIC)<input type="url" id="c-link" placeholder="https://"></label>
+    </div>
+    <label class="f">Resumo do projeto<textarea id="c-resumo" required placeholder="O que o projeto faz, quem atende, onde e quando."></textarea></label>
+    <label class="f">Contrapartidas para o patrocinador<textarea id="c-contra" placeholder="Ex.: logomarca em uniformes e banners, cotas de ingressos, menção em redes sociais"></textarea></label>
+    <div class="grid3">
+      <label class="f">Contato: nome<input type="text" id="c-cnome" required></label>
+      <label class="f">WhatsApp<input type="tel" id="c-cwhats" placeholder="(44) 9 9999-9999" required></label>
+      <label class="f">E-mail<input type="email" id="c-cmail"></label>
+    </div>
+    <label class="check"><input type="checkbox" id="c-decl"> Declaro que o projeto está aprovado e com prazo de captação vigente, e autorizo a divulgação destes dados na vitrine.</label>
+    <p id="c-err" class="notice bad" hidden></p>
+    <div class="row"><button class="btn btn-primary" type="submit" id="c-submit">Enviar para análise</button><button class="btn btn-ghost" type="button" id="c-cancel" hidden>Cancelar edição</button></div>
+  </form>
+</section>
+
+<!-- ============ VITRINE ============ -->
+<section class="view" id="v-vitrine" hidden>
+  <div class="stack">
+    <span class="eyebrow">Vitrine</span>
+    <h2>Projetos aptos a captar</h2>
+    <p class="muted">Projetos aprovados e conferidos pela Canção Consultoria. Escolha um e receba contato para destinar parte do seu imposto.</p>
+  </div>
+  <div class="filters">
+    <label class="f q"><span class="eyebrow">Buscar</span><input type="text" id="f-q" placeholder="Nome, cidade, proponente…"></label>
+    <label class="f"><span class="eyebrow">Lei</span><select id="f-lei"><option value="">Todas</option><option value="cultura">Cultura</option><option value="esporte">Esporte</option></select></label>
+    <label class="f"><span class="eyebrow">Estado</span><select id="f-uf"><option value="">Todos</option></select></label>
+    <label class="f"><span class="eyebrow">Ordenar</span><select id="f-ord"><option value="prazo">Prazo mais próximo</option><option value="falta">Maior valor a captar</option><option value="novo">Mais recentes</option></select></label>
+  </div>
+  <div id="projs" class="projs"></div>
+</section>
+
+<!-- ============ CALCULADORA ============ -->
+<section class="view" id="v-calc" hidden>
+  <div class="stack">
+    <span class="eyebrow">Calculadora de incentivo</span>
+    <h2>Quanto do seu imposto pode ir para cultura e esporte?</h2>
+    <p class="muted">Nos projetos do art. 18 da Lei Rouanet e na Lei do Esporte, o valor destinado é abatido integralmente do imposto devido, dentro dos limites abaixo.</p>
+  </div>
+  <div class="grid2" style="align-items:start">
+    <div class="card stack">
+      <div class="seg" role="group" aria-label="Tipo de contribuinte">
+        <button type="button" id="k-pj" aria-pressed="true">Empresa</button>
+        <button type="button" id="k-pf" aria-pressed="false">Pessoa física</button>
+      </div>
+      <div id="k-pj-box" class="stack">
+        <div class="seg" role="group" aria-label="Base do cálculo">
+          <button type="button" id="k-b-lucro" aria-pressed="true">Sei o lucro real</button>
+          <button type="button" id="k-b-irpj" aria-pressed="false">Sei o IRPJ devido</button>
+        </div>
+        <label class="f" id="k-lucro-l">Lucro real anual estimado<span class="hint">A base é o IRPJ à alíquota de 15%; o adicional de 10% não entra no cálculo.</span><span class="money"><input type="text" inputmode="decimal" id="k-lucro" value="5.000.000,00"></span></label>
+        <label class="f" id="k-irpj-l" hidden>IRPJ devido (alíquota de 15%, sem adicional)<span class="money"><input type="text" inputmode="decimal" id="k-irpj"></span></label>
+        <label class="f">Ano-calendário<select id="k-ano"><option>2026</option><option>2027</option><option>2028</option><option>2029</option></select></label>
+        <label class="check"><input type="checkbox" id="k-incl"> Apoiar projeto esportivo de inclusão social (limite de até 4%)</label>
+        <label class="check"><input type="checkbox" id="k-lc224" checked> Aplicar a redução de 10% dos limites da LC 224/2025 (cultura 3,6%, esporte 1,8%)</label>
+        <p class="small muted">Somente empresas tributadas pelo Lucro Real. Simples Nacional e Lucro Presumido não podem usar as leis de incentivo federais.</p>
+      </div>
+      <div id="k-pf-box" class="stack" hidden>
+        <label class="f">Imposto de renda devido no ano<span class="hint">Linha "Imposto devido" da declaração completa.</span><span class="money"><input type="text" inputmode="decimal" id="k-irpf" value="30.000,00"></span></label>
+        <p class="small muted">Somente quem faz a declaração completa. A destinação precisa ser feita até 31 de dezembro do ano-calendário. O limite de 6% da cultura é compartilhado com audiovisual, fundos da criança e do idoso.</p>
+      </div>
+    </div>
+    <div class="card result" aria-live="polite">
+      <span class="eyebrow">Você pode destinar até</span>
+      <div class="lim"><span>Cultura · Lei Rouanet<br><span class="small muted" id="k-c-p">4% do IRPJ devido</span></span><span class="v num" id="k-c">—</span></div>
+      <div class="lim"><span>Esporte · Lei de Incentivo<br><span class="small muted" id="k-e-p">2% do IRPJ devido</span></span><span class="v num" id="k-e">—</span></div>
+      <div class="lim total"><span>Total por ano<br><span class="small muted">sem custo adicional, dentro dos limites</span></span><span class="v num" id="k-t">—</span></div>
+      <p class="small muted" id="k-base"></p>
+      <button class="btn btn-sun" type="button" id="k-lead">Quero destinar · receber contato da Canção</button>
+      <button class="btn btn-ghost" type="button" data-go="vitrine">Ver projetos aptos</button>
+    </div>
+  </div>
+  <p class="foot">Referências: Lei 8.313/1991 (Rouanet) e Lei 9.532/1997; Lei 11.438/2006 com a LC 222/2025 e o Decreto 12.861/2026 (Esporte); LC 224/2025 (redução de benefícios fiscais, com aplicação ainda sujeita a esclarecimentos da Receita Federal). Simulação orientativa, sem valor de parecer; confirme com seu contador.</p>
+</section>
+
+<!-- ============ GESTÃO ============ -->
+<section class="view" id="v-admin" hidden>
+  <div class="stack">
+    <span class="eyebrow">Gestão · Canção Consultoria</span>
+    <h2>Painel de gestão</h2>
+  </div>
+  <div class="tabs" id="a-tabs">
+    <button data-tab="analise" aria-pressed="true">Para aprovar <span class="count" id="n-analise" hidden></span></button>
+    <button data-tab="leads" aria-pressed="false">Contatos <span class="count" id="n-leads" hidden></span></button>
+    <button data-tab="pedidos" aria-pressed="false">Projetos completos <span class="count" id="n-pedidos" hidden></span></button>
+    <button data-tab="vitrine" aria-pressed="false">Vitrine</button>
+    <button data-tab="config" aria-pressed="false">Configurações</button>
+  </div>
+  <div id="a-body" class="stack"></div>
+  <form id="cfg" class="card stack" hidden novalidate>
+    <h3>Configurações</h3>
+    <div class="grid2">
+      <label class="f">Preço do projeto completo<span class="money"><input type="text" inputmode="decimal" id="g-preco" placeholder="1.500,00"></span></label>
+      <label class="f">WhatsApp da Canção<input type="tel" id="g-whats" placeholder="(44) 9 9999-9999"></label>
+      <label class="f">E-mail de contato<input type="email" id="g-mail"></label>
+      <label class="f">Condição de pagamento<input type="text" id="g-cond" placeholder="Pix ou 2x no cartão"></label>
+    </div>
+    <label class="f">Mensagem para quem solicita o projeto completo<textarea id="g-msg" placeholder="Ex.: Após o pagamento, o projeto completo é liberado em até 1 dia útil e inclui 1 hora de revisão com nossa equipe."></textarea></label>
+    <div class="row"><button class="btn btn-primary" type="submit">Salvar configurações</button></div>
+  </form>
+</section>
+</main>
+
+<!-- Sheet: contato / detalhes -->
+<div class="sheet" id="sheet" hidden role="dialog" aria-modal="true" aria-labelledby="sheet-title">
+  <div class="sheet-in" id="sheet-in"></div>
+</div>
+<div class="toast" id="toast" hidden role="status"></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.117.2/dist/umd/supabase.js"></script>
+<script type="module" src="/app.js"></script>
+</body>
+</html>
